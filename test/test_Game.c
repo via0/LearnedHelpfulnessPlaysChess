@@ -13,9 +13,11 @@ void tearDown(void)
 {
 }
 
-void test_Game_NeedToImplement(void)
+void test_Game_CreateWorks(void)
 {
-    TEST_IGNORE_MESSAGE("Need to Implement Game");
+    Game game;
+    (void) Game_Create(&game);
+    TEST_ASSERT_NOT_NULL(&game);
 }
 
 #endif // TEST
