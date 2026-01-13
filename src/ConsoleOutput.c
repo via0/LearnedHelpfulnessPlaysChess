@@ -44,3 +44,7 @@ int ConsoleBuffer_WriteString(ConsoleBuffer consoleBuffer, size_t startRow, size
     
     return 0;
 }
+
+int ConsoleBuffer_WriteSquare(ConsoleBuffer consoleBuffer, size_t startRow, size_t startCol, const char** inSquare, size_t width, size_t height){
+    return 0;
+}
