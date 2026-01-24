@@ -16,36 +16,46 @@ int Board_Create(Board* board){
 int Board_ResetPieces(Board* board){
 
     // Initialize black pieces
-    board->square[(8 * 0) + 0].piece.type = PIECE_ROOK;
-    board->square[(8 * 0) + 7].piece.type = PIECE_ROOK;
-    board->square[(8 * 0) + 1].piece.type = PIECE_KNIGHT;
-    board->square[(8 * 0) + 6].piece.type = PIECE_KNIGHT;
-    board->square[(8 * 0) + 2].piece.type = PIECE_BISHOP;
-    board->square[(8 * 0) + 5].piece.type = PIECE_BISHOP;
-    board->square[(8 * 0) + 3].piece.type = PIECE_QUEEN;
-    board->square[(8 * 0) + 4].piece.type = PIECE_KING;
+    Board_GetSquare(board, "a8")->piece.type = PIECE_ROOK;
+    Board_GetSquare(board, "b8")->piece.type = PIECE_KNIGHT;
+    Board_GetSquare(board, "c8")->piece.type = PIECE_BISHOP;
+    Board_GetSquare(board, "d8")->piece.type = PIECE_QUEEN;
+    Board_GetSquare(board, "e8")->piece.type = PIECE_KING;
+    Board_GetSquare(board, "f8")->piece.type = PIECE_BISHOP;
+    Board_GetSquare(board, "g8")->piece.type = PIECE_KNIGHT;
+    Board_GetSquare(board, "h8")->piece.type = PIECE_ROOK;
 
-    for(int col = 0; col < 8; col++){
-        board->square[(8 * 1) + col].piece.type = PIECE_PAWN;
-    }
+    Board_GetSquare(board, "a7")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "b7")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "c7")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "d7")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "e7")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "f7")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "g7")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "h7")->piece.type = PIECE_PAWN;
 
     for(int i = 0; i < 16; i++){
         board->square[i].piece.color = COLOR_BLACK;
     }
 
     // Initialize white pieces
-    board->square[(8 * 7) + 0].piece.type = PIECE_ROOK;
-    board->square[(8 * 7) + 7].piece.type = PIECE_ROOK;
-    board->square[(8 * 7) + 1].piece.type = PIECE_KNIGHT;
-    board->square[(8 * 7) + 6].piece.type = PIECE_KNIGHT;
-    board->square[(8 * 7) + 2].piece.type = PIECE_BISHOP;
-    board->square[(8 * 7) + 5].piece.type = PIECE_BISHOP;
-    board->square[(8 * 7) + 3].piece.type = PIECE_QUEEN;
-    board->square[(8 * 7) + 4].piece.type = PIECE_KING;
+    Board_GetSquare(board, "a1")->piece.type = PIECE_ROOK;
+    Board_GetSquare(board, "b1")->piece.type = PIECE_KNIGHT;
+    Board_GetSquare(board, "c1")->piece.type = PIECE_BISHOP;
+    Board_GetSquare(board, "d1")->piece.type = PIECE_QUEEN;
+    Board_GetSquare(board, "e1")->piece.type = PIECE_KING;
+    Board_GetSquare(board, "f1")->piece.type = PIECE_BISHOP;
+    Board_GetSquare(board, "g1")->piece.type = PIECE_KNIGHT;
+    Board_GetSquare(board, "h1")->piece.type = PIECE_ROOK;
 
-    for(int col = 0; col < 8; col++){
-        board->square[(8 * 6) + col].piece.type = PIECE_PAWN;
-    }
+    Board_GetSquare(board, "a2")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "b2")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "c2")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "d2")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "e2")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "f2")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "g2")->piece.type = PIECE_PAWN;
+    Board_GetSquare(board, "h2")->piece.type = PIECE_PAWN;
 
     for(int i = (64 - 16); i < 64; i++){
         board->square[i].piece.color = COLOR_WHITE;
