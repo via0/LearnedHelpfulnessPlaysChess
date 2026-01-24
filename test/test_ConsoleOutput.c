@@ -59,11 +59,14 @@ void test_ConsoleOutput_WriteString_Start_Col_Too_High(){
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_WriteString(consoleBuffer, 0, CONSOLE_WINDOW_WIDTH, "k"));
 }
 
-void test_ConsoleOutput_WriteSquare(){
+void test_ConsoleOutput_DrawRectangle(){
     ConsoleBuffer consoleBuffer;
     const char* message[2] = {"12", "34"};
-    TEST_ASSERT_EQUAL(0, ConsoleBuffer_WriteSquare(consoleBuffer, 0, 0, message, 2, 2));
+    TEST_ASSERT_EQUAL(0, ConsoleBuffer_DrawRectangle(consoleBuffer, 0, 0, message, 2, 2));
     TEST_ASSERT_EQUAL_MEMORY("12", &consoleBuffer[0][0], 2);
     TEST_ASSERT_EQUAL_MEMORY("34", &consoleBuffer[1][0], 2);
+}
+
+void test_ConsoleOutput_DrawRectangle_TallAndThin(){
 }
 #endif // TEST

@@ -45,7 +45,7 @@ int ConsoleBuffer_WriteString(ConsoleBuffer consoleBuffer, size_t startRow, size
     return 0;
 }
 
-int ConsoleBuffer_WriteSquare(ConsoleBuffer consoleBuffer, size_t startRow, size_t startCol, const char** inSquare, size_t width, size_t height){
+int ConsoleBuffer_DrawRectangle(ConsoleBuffer consoleBuffer, size_t startRow, size_t startCol, const char** inSquare, size_t width, size_t height){
 
     for(size_t row = startRow; row < startRow + width; row++){
         for(size_t col = startCol; col < startCol + height; col++){
