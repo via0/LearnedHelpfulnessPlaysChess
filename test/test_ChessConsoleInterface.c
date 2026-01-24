@@ -7,15 +7,16 @@
 
 void setUp(void)
 {
+    //TEST_ASSERT_EQUAL(0, Console_Init());
 }
 
 void tearDown(void)
 {
 }
 
-void test_ChessConsoleInterface_NeedToImplement(void)
+void test_ChessConsoleInterface_DrawBoard(void)
 {
-    TEST_IGNORE_MESSAGE("Need to Implement ChessConsoleInterface");
+    TEST_ASSERT_EQUAL(0, Console_DrawBoard());
 }
 
 #endif // TEST
