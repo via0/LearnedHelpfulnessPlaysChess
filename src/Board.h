@@ -36,8 +36,10 @@ int Board_Create(Board* board);
 int Piece_CreateEmpty(Piece* piece);
 int Piece_Create(Piece* piece, Color color, PieceType type);
 int Piece_Copy(Piece* dest, Piece* src);
+int Piece_IsEqual(Piece* piece1, Piece* piece2);
 
 int Square_Create(Square* square, Piece* piece, Color color);
-
+int Square_Copy(Square* dest, Square* src);
+int Square_IsEqual(Square* square1, Square* square2);
 
 #endif // BOARD_H
