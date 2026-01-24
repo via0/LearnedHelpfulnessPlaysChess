@@ -31,7 +31,10 @@ typedef struct s_Board {
     Square square[64];
 } Board;
 
+typedef char AlgNotation[2];
+
 int Board_Create(Board* board);
+int Board_ResetPieces(Board* board);
 
 int Piece_CreateEmpty(Piece* piece);
 int Piece_Create(Piece* piece, Color color, PieceType type);
@@ -41,5 +44,6 @@ int Piece_IsEqual(Piece* piece1, Piece* piece2);
 int Square_Create(Square* square, Piece* piece, Color color);
 int Square_Copy(Square* dest, Square* src);
 int Square_IsEqual(Square* square1, Square* square2);
+int Square_SetPiece(Square* square, Piece* piece);
 
 #endif // BOARD_H

@@ -2,6 +2,54 @@
 #include "Board.h"
 
 int Board_Create(Board* board){
+    Piece piece;
+    Piece_CreateEmpty(&piece);
+    for(int i = 0; i < 64; i++){
+        Square_Create(&board->square[i], &piece, \
+                (i%2 == 0) ? COLOR_WHITE : COLOR_BLACK);
+    }
+    return 0;
+}
+
+// This is ugly but overthinking this is probably not worth
+int Board_ResetPieces(Board* board){
+
+    // Initialize black pieces
+    board->square[(8 * 0) + 0].piece.type = PIECE_ROOK;
+    board->square[(8 * 0) + 7].piece.type = PIECE_ROOK;
+    board->square[(8 * 0) + 1].piece.type = PIECE_KNIGHT;
+    board->square[(8 * 0) + 6].piece.type = PIECE_KNIGHT;
+    board->square[(8 * 0) + 2].piece.type = PIECE_BISHOP;
+    board->square[(8 * 0) + 5].piece.type = PIECE_BISHOP;
+    board->square[(8 * 0) + 3].piece.type = PIECE_QUEEN;
+    board->square[(8 * 0) + 4].piece.type = PIECE_KING;
+
+    for(int col = 0; col < 8; col++){
+        board->square[(8 * 1) + col].piece.type = PIECE_PAWN;
+    }
+
+    for(int i = 0; i < 16; i++){
+        board->square[i].piece.color = COLOR_BLACK;
+    }
+
+    // Initialize white pieces
+    board->square[(8 * 7) + 0].piece.type = PIECE_ROOK;
+    board->square[(8 * 7) + 7].piece.type = PIECE_ROOK;
+    board->square[(8 * 7) + 1].piece.type = PIECE_KNIGHT;
+    board->square[(8 * 7) + 6].piece.type = PIECE_KNIGHT;
+    board->square[(8 * 7) + 2].piece.type = PIECE_BISHOP;
+    board->square[(8 * 7) + 5].piece.type = PIECE_BISHOP;
+    board->square[(8 * 7) + 3].piece.type = PIECE_QUEEN;
+    board->square[(8 * 7) + 4].piece.type = PIECE_KING;
+
+    for(int col = 0; col < 8; col++){
+        board->square[(8 * 6) + col].piece.type = PIECE_PAWN;
+    }
+
+    for(int i = (64 - 16); i < 64; i++){
+        board->square[i].piece.color = COLOR_WHITE;
+    }
+
     return 0;
 }
 
@@ -26,7 +74,7 @@ int Piece_IsEqual(Piece* piece1, Piece* piece2){
 }
 
 int Square_Create(Square* square, Piece* piece, Color color){
-    if(Piece_Copy(&square->piece, piece) == 1)
+    if(Square_SetPiece(square, piece) == 1)
         return 1;
 
     square->color = color;
@@ -44,4 +92,8 @@ int Square_Copy(Square* dest, Square* src){
 
 int Square_IsEqual(Square* square1, Square* square2){
     return((square1->color == square2->color) && Piece_IsEqual(&square1->piece, &square2->piece));
+}
+
+int Square_SetPiece(Square* square, Piece* piece){
+    return Piece_Copy(&square->piece, piece);
 }
