@@ -4,10 +4,11 @@
 #include "unity.h"
 
 #include "ChessConsoleInterface.h"
+#include "ConsoleBuffer.h"
 
 void setUp(void)
 {
-    //TEST_ASSERT_EQUAL(0, Console_Init());
+    TEST_ASSERT_EQUAL(0, Console_Init());
 }
 
 void tearDown(void)
