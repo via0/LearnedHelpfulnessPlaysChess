@@ -2,6 +2,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <stddef.h>
+
 typedef enum {
     PIECE_NONE = 0,
     PIECE_KING,
@@ -35,6 +37,8 @@ typedef char AlgNotation[2];
 
 int Board_Create(Board* board);
 int Board_ResetPieces(Board* board);
+Square* Board_GetSquare(Board* board, AlgNotation alg);
+size_t Board_GetIndexFromAlgNotation(AlgNotation alg);
 
 int Piece_CreateEmpty(Piece* piece);
 int Piece_Create(Piece* piece, Color color, PieceType type);

@@ -94,7 +94,14 @@ void test_Square_SetPiece(void){
 }
 
 void test_Board_GetSquare(void){
-    AlgNotation alg = "h7";
+    Board board;
+    AlgNotation alg = "a8";
+    TEST_ASSERT_EQUAL_PTR(Board_GetSquare(&board, alg), &board.square[0]);
+
+}
+
+void test_IndexFromAlgNotation(void){
+    TEST_ASSERT_EQUAL(0, Board_GetIndexFromAlgNotation("a8"));
 }
 
 #endif // TEST

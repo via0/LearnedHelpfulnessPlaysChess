@@ -1,5 +1,6 @@
 
 #include "Board.h"
+#define NULL ((void *)0)
 
 int Board_Create(Board* board){
     Piece piece;
@@ -50,7 +51,25 @@ int Board_ResetPieces(Board* board){
         board->square[i].piece.color = COLOR_WHITE;
     }
 
+
     return 0;
+}
+
+Square* Board_GetSquare(Board* board, AlgNotation alg){
+    size_t index = Board_GetIndexFromAlgNotation(alg);
+    if(index > 63)
+        return NULL;
+
+    return &board->square[index];
+}
+
+size_t Board_GetIndexFromAlgNotation(AlgNotation alg){
+    // rank = row, file = col
+    // a8 = tile 0, h1 = tile 63
+    size_t row = (size_t) (8 - (alg[1] - '0'));
+    size_t col = (size_t) (alg[0] - 'a');
+
+    return (row * 8) + col;
 }
 
 int Piece_CreateEmpty(Piece* piece){
