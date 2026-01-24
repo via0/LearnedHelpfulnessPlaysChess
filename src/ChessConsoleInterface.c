@@ -5,6 +5,11 @@
 #define CONSOLE_BOARD_ORIGIN_X 10
 #define CONSOLE_BOARD_ORIGIN_Y 10
 
+const ConsoleSquare EmptyConsoleSquare =
+                "+------" 
+                "|......" 
+                "|..Wq.." 
+                "|......";
 
 ConsoleBuffer consoleBuffer;
 
@@ -12,8 +17,12 @@ int Console_Init(void){
     return ConsoleBuffer_Create(consoleBuffer);
 }
 
-int Console_DrawSquare(ConsoleSquare consoleSquare, size_t originX, size_t originY){
-    return 0;
+int Console_Render(void){
+    return ConsoleBuffer_Print(consoleBuffer);
+}
+
+int Console_DrawSquare(const ConsoleSquare consoleSquare, size_t originX, size_t originY){
+    return ConsoleBuffer_DrawRectangle(consoleBuffer, originY, originX, (const char*) consoleSquare, CONSOLE_SQUARE_WIDTH, CONSOLE_SQUARE_HEIGHT);
 }
 
 int Console_DrawBoard(void){

@@ -15,13 +15,15 @@ int ConsoleBuffer_Create(ConsoleBuffer consoleBuffer){
     return 0;
 }
 
-void ConsoleBuffer_Print(ConsoleBuffer consoleBuffer){
+int ConsoleBuffer_Print(ConsoleBuffer consoleBuffer){
     for(size_t row = 0; row < CONSOLE_WINDOW_HEIGHT; row++){
         for(size_t col = 0; col < CONSOLE_WINDOW_WIDTH; col++){
             printf("%c", consoleBuffer[row][col]);
         }
         printf("\n");
     }
+
+    return 0;
 }
 
 int ConsoleBuffer_WriteString(ConsoleBuffer consoleBuffer, size_t startRow, size_t startCol, const char* inString){
