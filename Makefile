@@ -9,7 +9,7 @@ CFLAGS := -Isrc
 SRC := \
   app/main.c \
   src/Game.c \
-  src/ConsoleOutput.c
+  src/ConsoleBuffer.c
 
 # ---- Output ----
 TARGET := chess

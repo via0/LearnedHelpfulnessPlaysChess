@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "Game.h"
-#include "ConsoleOutput.h"
+#include "ConsoleBuffer.h"
 
 int main(void){
     ConsoleBuffer consoleBuffer;
