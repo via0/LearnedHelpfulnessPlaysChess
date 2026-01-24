@@ -1,6 +1,6 @@
 
-#ifndef CONSOLEOUTPUT_H
-#define CONSOLEOUTPUT_H
+#ifndef CONSOLEBUFFER_H
+#define CONSOLEBUFFER_H
 
 #define CONSOLE_WINDOW_WIDTH  80
 #define CONSOLE_WINDOW_HEIGHT 40
@@ -16,4 +16,4 @@ int ConsoleBuffer_WriteString(ConsoleBuffer consoleBuffer, size_t startRow, size
 int ConsoleBuffer_DrawRectangle(ConsoleBuffer consoleBuffer, size_t startRow, size_t startCol, const char* inSquare, size_t width, size_t height);
 int ConsoleBuffer_DrawChar(ConsoleBuffer consoleBuffer, size_t row, size_t col, const char inChar);
 
-#endif // CONSOLEOUTPUT_H
+#endif // CONSOLEBUFFER_H

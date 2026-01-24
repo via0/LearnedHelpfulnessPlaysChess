@@ -3,7 +3,7 @@
 
 #include "unity.h"
 
-#include "ConsoleOutput.h"
+#include "ConsoleBuffer.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -18,48 +18,48 @@ void tearDown(void)
 {
 }
 
-void test_ConsoleOutput_ConsoleBufferSize(void){
+void test_ConsoleBuffer_ConsoleBufferSize(void){
     TEST_ASSERT_EQUAL(sizeof(consoleBuffer), CONSOLE_WINDOW_HEIGHT * CONSOLE_WINDOW_WIDTH);
     TEST_ASSERT_EQUAL(sizeof(consoleBuffer[0]), CONSOLE_WINDOW_WIDTH);
 }
 
-void test_ConsoleOutput_WriteString_To_Buffer(){
+void test_ConsoleBuffer_WriteString_To_Buffer(){
     const char message[] = "My Name Jeff";
     size_t length = strlen(message);
     TEST_ASSERT_EQUAL(0, ConsoleBuffer_WriteString(consoleBuffer, 0, 0, message));
     TEST_ASSERT_EQUAL_MEMORY("My Name Jeff", &consoleBuffer[0][0], length);
 }
 
-void test_ConsoleOutput_WriteString_Length_Too_Long(){
+void test_ConsoleBuffer_WriteString_Length_Too_Long(){
     const char message[] = "21";
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_WriteString(consoleBuffer, 0, CONSOLE_WINDOW_WIDTH - 1, message));
     TEST_ASSERT_EQUAL(0, ConsoleBuffer_WriteString(consoleBuffer, 0, CONSOLE_WINDOW_WIDTH - 1, "2"));
 }
 
-void test_ConsoleOutput_WriteString_Start_Row_Negative(){
+void test_ConsoleBuffer_WriteString_Start_Row_Negative(){
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_WriteString(consoleBuffer, -1, 0, "annoying orange"));
 }
 
-void test_ConsoleOutput_WriteString_Start_Col_Negative(){
+void test_ConsoleBuffer_WriteString_Start_Col_Negative(){
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_WriteString(consoleBuffer, 0, -1, "Epic"));
 }
 
-void test_ConsoleOutput_WriteString_Start_Row_Too_High(){
+void test_ConsoleBuffer_WriteString_Start_Row_Too_High(){
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_WriteString(consoleBuffer, CONSOLE_WINDOW_HEIGHT, 0, "o"));
 }
 
-void test_ConsoleOutput_WriteString_Start_Col_Too_High(){
+void test_ConsoleBuffer_WriteString_Start_Col_Too_High(){
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_WriteString(consoleBuffer, 0, CONSOLE_WINDOW_WIDTH, "k"));
 }
 
-void test_ConsoleOutput_DrawSquare(){
+void test_ConsoleBuffer_DrawSquare(){
     const char message[] = "12" "34";
     TEST_ASSERT_EQUAL(0, ConsoleBuffer_DrawRectangle(consoleBuffer, 0, 0, message, 2, 2));
     TEST_ASSERT_EQUAL_MEMORY("12", &consoleBuffer[0][0], 2);
     TEST_ASSERT_EQUAL_MEMORY("34", &consoleBuffer[1][0], 2);
 }
 
-void test_ConsoleOutput_DrawRectangle(){
+void test_ConsoleBuffer_DrawRectangle(){
     const char message[] = "sc" "an" "ne" "67";
     TEST_ASSERT_EQUAL(0, ConsoleBuffer_DrawRectangle(consoleBuffer, 1, 1, message, 2, 4));
 
@@ -69,7 +69,7 @@ void test_ConsoleOutput_DrawRectangle(){
     TEST_ASSERT_EQUAL_MEMORY("67", &consoleBuffer[4][1], 2);
 }
 
-void test_ConsoleOutput_DrawRectangle_TallAndThin(){
+void test_ConsoleBuffer_DrawRectangle_TallAndThin(){
     const char message[CONSOLE_WINDOW_HEIGHT];
     memset(message, 'a', CONSOLE_WINDOW_HEIGHT);
 
@@ -80,7 +80,7 @@ void test_ConsoleOutput_DrawRectangle_TallAndThin(){
     }
 }
 
-void test_ConsoleOutput_DrawRectangle_ShortAndFat(){
+void test_ConsoleBuffer_DrawRectangle_ShortAndFat(){
     const char message[CONSOLE_WINDOW_WIDTH];
     memset(message, 'b', CONSOLE_WINDOW_WIDTH);
 
@@ -91,7 +91,7 @@ void test_ConsoleOutput_DrawRectangle_ShortAndFat(){
     }
 }
 
-void test_ConsoleOutput_DrawRectangle_ExactFit(){
+void test_ConsoleBuffer_DrawRectangle_ExactFit(){
     const char message[CONSOLE_WINDOW_WIDTH * CONSOLE_WINDOW_HEIGHT];
     memset(message, 'c', CONSOLE_WINDOW_WIDTH * CONSOLE_WINDOW_HEIGHT);
 
@@ -104,13 +104,13 @@ void test_ConsoleOutput_DrawRectangle_ExactFit(){
     }
 }
 
-void test_ConsoleOutput_DrawRectangle_OutOfLowerBound(){
+void test_ConsoleBuffer_DrawRectangle_OutOfLowerBound(){
     const char message[2];
     memset(message, 'd', 2);
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_DrawRectangle(consoleBuffer, CONSOLE_WINDOW_HEIGHT-1, 0, message, 1, 2));
 }
 
-void test_ConsoleOutput_DrawRectangle_OutOfRightmostBound(){
+void test_ConsoleBuffer_DrawRectangle_OutOfRightmostBound(){
     const char message[] = "67";
     TEST_ASSERT_EQUAL(1, ConsoleBuffer_DrawRectangle(consoleBuffer, 0, CONSOLE_WINDOW_WIDTH-1, message, 2, 1));
 }

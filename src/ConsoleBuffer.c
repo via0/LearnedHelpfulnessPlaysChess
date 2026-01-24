@@ -1,5 +1,5 @@
 
-#include "ConsoleOutput.h"
+#include "ConsoleBuffer.h"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
