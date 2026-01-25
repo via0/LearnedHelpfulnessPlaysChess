@@ -139,6 +139,11 @@
 #         - -pedantic
 #       '*':            # Add '-foo' to compilation of all files in all test executables
 #         - -foo
+:flags:
+  :test:
+    :compile:
+      '*':
+        - -g
 
 # Configuration Options specific to CMock. See CMock docs for details
 :cmock:

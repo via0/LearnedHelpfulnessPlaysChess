@@ -1,5 +1,6 @@
 
 #include "ChessConsoleInterface.h"
+#include "Board.h"
 
 // Coordinates of chessboard on console GUI
 #define CONSOLE_BOARD_ORIGIN_X 10
@@ -12,6 +13,7 @@ const ConsoleSquare EmptyConsoleSquare =
                 "|......";
 
 ConsoleBuffer consoleBuffer;
+Board board;
 
 int Console_Init(void){
     return ConsoleBuffer_Create(consoleBuffer);
@@ -26,5 +28,6 @@ int Console_DrawSquare(const ConsoleSquare consoleSquare, size_t originX, size_t
 }
 
 int Console_DrawBoard(void){
+
     return 0;
 }

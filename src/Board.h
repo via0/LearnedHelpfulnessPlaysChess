@@ -38,7 +38,9 @@ typedef char AlgNotation[2];
 int Board_Create(Board* board);
 int Board_ResetPieces(Board* board);
 Square* Board_GetSquare(Board* board, AlgNotation alg);
+Piece* Board_GetPiece(Board* board, AlgNotation alg);
 size_t Board_GetIndexFromAlgNotation(AlgNotation alg);
+int Board_MovePiece(Board* board, AlgNotation src, AlgNotation dest);
 
 int Piece_CreateEmpty(Piece* piece);
 int Piece_Create(Piece* piece, Color color, PieceType type);

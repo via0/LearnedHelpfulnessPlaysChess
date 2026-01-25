@@ -73,13 +73,31 @@ Square* Board_GetSquare(Board* board, AlgNotation alg){
     return &board->square[index];
 }
 
+Piece* Board_GetPiece(Board* board, AlgNotation alg){
+    Square*square = Board_GetSquare(board, alg);
+    if(square == NULL)
+        return NULL;
+
+    return &square->piece;
+}
+
 size_t Board_GetIndexFromAlgNotation(AlgNotation alg){
-    // rank = row, file = col
+    // rank = row (8 through 1), file = col (a through h)
     // a8 = tile 0, h1 = tile 63
     size_t row = (size_t) (8 - (alg[1] - '0'));
     size_t col = (size_t) (alg[0] - 'a');
 
+    if((row > 7) || (col > 7))
+        return -1;
+
     return (row * 8) + col;
+}
+
+int Board_MovePiece(Board* board, AlgNotation src, AlgNotation dest){
+    if(Square_SetPiece(Board_GetSquare(board, dest), Board_GetPiece(board, src)) == 1)
+        return 1;
+    Board_GetPiece(board, src)->type = PIECE_NONE;
+    return 0;
 }
 
 int Piece_CreateEmpty(Piece* piece){
