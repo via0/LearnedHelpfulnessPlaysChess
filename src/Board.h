@@ -40,6 +40,8 @@ int Board_ResetPieces(Board* board);
 Square* Board_GetSquare(Board* board, AlgNotation alg);
 Piece* Board_GetPiece(Board* board, AlgNotation alg);
 size_t Board_GetIndexFromAlgNotation(AlgNotation alg);
+size_t Board_GetRowFromAlgNotation(AlgNotation alg);
+size_t Board_GetColFromAlgNotation(AlgNotation alg);
 int Board_MovePiece(Board* board, AlgNotation src, AlgNotation dest);
 
 int Piece_CreateEmpty(Piece* piece);

@@ -5,9 +5,19 @@
 int Board_Create(Board* board){
     Piece piece;
     Piece_CreateEmpty(&piece);
+    Color color = COLOR_WHITE;
+
+    // row 0, col 0 white
+    // row 0, col 1 black
+    // row 1, col 0 black
+    // row 1, col 1 white
+    // so color = ((row ^ col) == 1) ? white : black
+    //          = (((i / 8) ^ (i % 8)) == 1 ? white : black)
+
     for(int i = 0; i < 64; i++){
-        Square_Create(&board->square[i], &piece, \
-                (i%2 == 0) ? COLOR_WHITE : COLOR_BLACK);
+        Square_Create(&board->square[i], &piece, color);
+        if(i % 8 != 7)
+            color = (color == COLOR_WHITE) ? COLOR_BLACK : COLOR_WHITE;
     }
     return 0;
 }
@@ -84,13 +94,21 @@ Piece* Board_GetPiece(Board* board, AlgNotation alg){
 size_t Board_GetIndexFromAlgNotation(AlgNotation alg){
     // rank = row (8 through 1), file = col (a through h)
     // a8 = tile 0, h1 = tile 63
-    size_t row = (size_t) (8 - (alg[1] - '0'));
-    size_t col = (size_t) (alg[0] - 'a');
+    size_t row = Board_GetRowFromAlgNotation(alg);
+    size_t col = Board_GetColFromAlgNotation(alg);
 
     if((row > 7) || (col > 7))
         return -1;
 
     return (row * 8) + col;
+}
+
+size_t Board_GetRowFromAlgNotation(AlgNotation alg){
+    return (size_t) (8 - (alg[1] - '0'));
+}
+
+size_t Board_GetColFromAlgNotation(AlgNotation alg){
+    return (size_t) (alg[0] - 'a');
 }
 
 int Board_MovePiece(Board* board, AlgNotation src, AlgNotation dest){

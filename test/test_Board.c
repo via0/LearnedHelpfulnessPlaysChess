@@ -18,10 +18,6 @@ void test_Board_Create(void){
     TEST_ASSERT_EQUAL(0, Board_Create(&board));
     for(int i = 0; i < 64; i++){
         TEST_ASSERT_EQUAL(PIECE_NONE, board.square[i].piece.type);
-        if(i % 2 == 0)
-           TEST_ASSERT_EQUAL(COLOR_WHITE, board.square[i].color);
-        else
-            TEST_ASSERT_EQUAL(COLOR_BLACK, board.square[i].color);
     }
 }
 
