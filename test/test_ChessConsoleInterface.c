@@ -6,6 +6,7 @@
 #include "ChessConsoleInterface.h"
 #include "ConsoleBuffer.h"
 #include "Board.h"
+#include "InfoWindow.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -21,7 +22,7 @@ void tearDown(void)
 void test_ChessConsoleInterface_DrawBoard(void)
 {
     TEST_ASSERT_EQUAL(0, Console_DrawBoard());
-    Console_Render();
+//    Console_Render();
 }
 
 //void test_ChessConsoleInterface_Render(void){
@@ -56,7 +57,11 @@ void test_ConsoleSquare_WritePiece(void){
 }
 
 void test_Console_DrawInfoWindow(void){
+    const char message[] = "have you seen chef?";
+    TEST_ASSERT_EQUAL(0, Console_WriteInfoLine(message));
     TEST_ASSERT_EQUAL(0, Console_DrawInfoWindow());
+    TEST_ASSERT_EQUAL(0, Console_DrawBoard());
+    Console_Render();
 }
 
 #endif // TEST

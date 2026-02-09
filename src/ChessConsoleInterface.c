@@ -1,9 +1,15 @@
 
 #include "ChessConsoleInterface.h"
+#include "InfoWindow.h"
+#include <string.h>
 
 // Coordinates of chessboard on console GUI
 #define CONSOLE_BOARD_ORIGIN_X 2
-#define CONSOLE_BOARD_ORIGIN_Y 2
+#define CONSOLE_BOARD_ORIGIN_Y (((CONSOLE_WINDOW_HEIGHT - CONSOLE_BOARD_HEIGHT) / 2) + 1)
+
+// Coordinates of info window on console GUI
+#define CONSOLE_INFO_WINDOW_ORIGIN_X (CONSOLE_WINDOW_WIDTH - INFO_WINDOW_NUM_COLS - 2)
+#define CONSOLE_INFO_WINDOW_ORIGIN_Y (CONSOLE_WINDOW_HEIGHT - INFO_WINDOW_NUM_ROWS - 2)
 
 const ConsoleSquare EmptyConsoleSquareBlack =
                 "+--------"
@@ -20,6 +26,7 @@ const ConsoleSquare EmptyConsoleSquareWhite =
 
 ConsoleBuffer consoleBuffer;
 Board board;
+struct s_InfoWindow infoWindow;
 
 int Console_Init(void){
     if(ConsoleBuffer_Create(consoleBuffer) == 1)
@@ -27,6 +34,8 @@ int Console_Init(void){
     if(Board_Create(&board) == 1)
         return 1;
     if(Board_ResetPieces(&board) == 1)
+        return 1;
+    if(InfoWindow_Initialize(&infoWindow))
         return 1;
     return 0;
 }
@@ -86,7 +95,27 @@ int Console_DrawBoard(void){
 }
 
 int Console_DrawInfoWindow(void){
+    // Janky implementatoin because ConsoleBuffer_DrawRectangle expects a 1D array and
+    // InfoWindow is a 2D array (and ConsoleBuffer_WriteString expects a null terminated
+    // string, and InfoWindow doesn't have those)
+    // It would be better to reimplement InfoWindow as a 1D array
+    const char* infoLinePointer;
+    for(int row = 0; row < INFO_WINDOW_NUM_ROWS; row++){
+        infoLinePointer = &infoWindow.info[row];
+        if(ConsoleBuffer_DrawRectangle(consoleBuffer,     \
+                    (CONSOLE_INFO_WINDOW_ORIGIN_Y + row), \
+                    (CONSOLE_INFO_WINDOW_ORIGIN_X),       \
+                    (const char*) infoLinePointer,        \
+                    INFO_WINDOW_NUM_COLS,                 \
+                    1) != 0){
+            return 1;
+        }
+    }
     return 0;
+}
+
+int Console_WriteInfoLine(const char* line){
+    return InfoWindow_WriteLine(&infoWindow, line);
 }
 
 int ConsoleSquare_Set(ConsoleSquare dest, const ConsoleSquare value){

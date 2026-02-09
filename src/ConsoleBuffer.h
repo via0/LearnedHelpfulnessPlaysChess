@@ -2,7 +2,7 @@
 #ifndef CONSOLEBUFFER_H
 #define CONSOLEBUFFER_H
 
-#define CONSOLE_WINDOW_WIDTH  80
+#define CONSOLE_WINDOW_WIDTH  160
 #define CONSOLE_WINDOW_HEIGHT 40
 
 #include <stddef.h>

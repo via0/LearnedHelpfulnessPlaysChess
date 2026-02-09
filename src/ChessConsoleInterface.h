@@ -9,6 +9,9 @@
 #define CONSOLE_SQUARE_WIDTH  9
 #define CONSOLE_SQUARE_HEIGHT 4
 
+#define CONSOLE_BOARD_WIDTH  ((CONSOLE_SQUARE_WIDTH * 8) + 1)
+#define CONSOLE_BOARD_HEIGHT ((CONSOLE_SQUARE_HEIGHT * 8) + 1)
+
 // where we write the piece name in the square
 #define PIECE_NAME_OFFSET_X 4
 #define PIECE_NAME_OFFSET_Y 2
@@ -25,6 +28,7 @@ int Console_DrawSquareByAlgNotation();
 int Console_DrawConsoleSquare(const ConsoleSquare consoleSquare, size_t originX, size_t originY);
 int Console_DrawBoard(void);
 int Console_DrawInfoWindow(void);
+int Console_WriteInfoLine(const char* line);
 
 int ConsoleSquare_Set(ConsoleSquare dest, const ConsoleSquare value);
 int ConsoleSquare_WritePiece(ConsoleSquare consoleSquare, Piece* piece);
