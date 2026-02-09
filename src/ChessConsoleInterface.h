@@ -24,6 +24,7 @@ int Console_Init(void);
 int Console_DrawSquareByAlgNotation();
 int Console_DrawConsoleSquare(const ConsoleSquare consoleSquare, size_t originX, size_t originY);
 int Console_DrawBoard(void);
+int Console_DrawInfoWindow(void);
 
 int ConsoleSquare_Set(ConsoleSquare dest, const ConsoleSquare value);
 int ConsoleSquare_WritePiece(ConsoleSquare consoleSquare, Piece* piece);

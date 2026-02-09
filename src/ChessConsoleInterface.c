@@ -85,6 +85,10 @@ int Console_DrawBoard(void){
     return 0;
 }
 
+int Console_DrawInfoWindow(void){
+    return 0;
+}
+
 int ConsoleSquare_Set(ConsoleSquare dest, const ConsoleSquare value){
     memcpy(dest, value, sizeof(ConsoleSquare));
     return 0;

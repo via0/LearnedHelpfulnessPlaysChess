@@ -55,4 +55,8 @@ void test_ConsoleSquare_WritePiece(void){
     TEST_ASSERT_EQUAL_MEMORY("BP", &consoleSquare[CONSOLE_SQUARE_PIECE_NAME_OFFSET], 2);
 }
 
+void test_Console_DrawInfoWindow(void){
+    TEST_ASSERT_EQUAL(0, Console_DrawInfoWindow());
+}
+
 #endif // TEST
