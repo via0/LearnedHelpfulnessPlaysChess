@@ -23,6 +23,20 @@ const ConsoleSquare EmptyConsoleSquareWhite =
                 "|        "
                 "|        ";
 
+#define CONSOLE_LH_WIDTH  18
+#define CONSOLE_LH_HEIGHT 7
+#define CONSOLE_LH_ORIGIN_X (CONSOLE_INFO_WINDOW_ORIGIN_X + ((INFO_WINDOW_NUM_COLS - CONSOLE_LH_WIDTH) / 2))
+//#define CONSOLE_LH_ORIGIN_X 45
+#define CONSOLE_LH_ORIGIN_Y 6
+
+const char LearnedHelpfulnessSprite[CONSOLE_LH_WIDTH * CONSOLE_LH_HEIGHT] =
+                "+----------------+"
+                "|    __          |"
+                "|  /o o/\\        |"
+                "|  \\O  \\/__/     |"
+                "|     /____\\     |"
+                "|    //    \\\\    |"
+                "+----------------+";
 
 ConsoleBuffer consoleBuffer;
 Board board;
@@ -114,6 +128,15 @@ int Console_DrawInfoWindow(void){
     return 0;
 }
 
+int Console_DrawLearnedHelpfulness(void){
+    return ConsoleBuffer_DrawRectangle(consoleBuffer, \
+            (CONSOLE_LH_ORIGIN_Y),                    \
+            (CONSOLE_LH_ORIGIN_X),                    \
+            LearnedHelpfulnessSprite,                 \
+            (CONSOLE_LH_WIDTH),                       \
+            (CONSOLE_LH_HEIGHT));
+}
+
 int Console_WriteInfoLine(const char* line){
     return InfoWindow_WriteLine(&infoWindow, line);
 }
@@ -159,4 +182,8 @@ int ConsoleSquare_WritePiece(ConsoleSquare consoleSquare, Piece* piece){
     consoleSquare[CONSOLE_SQUARE_PIECE_NAME_OFFSET + 1] = c_type;
 
     return 0;
+}
+
+int Console_DrawAllComponents(void){
+    return (Console_DrawBoard() || Console_DrawLearnedHelpfulness() || Console_DrawInfoWindow());
 }

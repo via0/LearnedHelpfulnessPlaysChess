@@ -28,9 +28,12 @@ int Console_DrawSquareByAlgNotation();
 int Console_DrawConsoleSquare(const ConsoleSquare consoleSquare, size_t originX, size_t originY);
 int Console_DrawBoard(void);
 int Console_DrawInfoWindow(void);
+int Console_DrawLearnedHelpfulness(void);
 int Console_WriteInfoLine(const char* line);
 
 int ConsoleSquare_Set(ConsoleSquare dest, const ConsoleSquare value);
 int ConsoleSquare_WritePiece(ConsoleSquare consoleSquare, Piece* piece);
+
+int Console_DrawAllComponents(void);
 
 #endif // CHESSCONSOLEINTERFACE_H

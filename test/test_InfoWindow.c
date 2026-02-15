@@ -87,7 +87,7 @@ void test_InfoWindow_WriteABunchOfMessages(void){
         sprintf(message, "We are writing for the %02d'th time fr", row+1);
         TEST_ASSERT_EQUAL_MEMORY(message, &infoWindow.info[row], strlen(message));
     }
-    InfoWindow_Print(&infoWindow);
+//    InfoWindow_Print(&infoWindow);
 }
 
 #endif // TEST

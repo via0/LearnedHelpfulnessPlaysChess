@@ -2,7 +2,7 @@
 CC := gcc
 
 # ---- Flags ----
-CFLAGS := -std=c11 -Wall -Wextra -Werror -Iinclude -O0 -g
+CFLAGS := -std=c11 -Wall -Wextra -Werror -Iinclude -O0 -g3
 CFLAGS := -Isrc
 
 # ---- Source files ----

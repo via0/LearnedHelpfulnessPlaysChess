@@ -61,6 +61,15 @@ void test_Console_DrawInfoWindow(void){
     TEST_ASSERT_EQUAL(0, Console_WriteInfoLine(message));
     TEST_ASSERT_EQUAL(0, Console_DrawInfoWindow());
     TEST_ASSERT_EQUAL(0, Console_DrawBoard());
+//    Console_Render();
+}
+
+void test_Console_DrawLearnedHelpfulness(void){
+    TEST_ASSERT_EQUAL(0, Console_DrawLearnedHelpfulness());
+}
+
+void test_Console_DrawAllComponents(void){
+    TEST_ASSERT_EQUAL(0, Console_DrawAllComponents());
     Console_Render();
 }
 
