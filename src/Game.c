@@ -2,7 +2,7 @@
 #include "Game.h"
 
 int Game_Create(Game* game){
-    game->state = GAME_STATE_INIT;
+    game->gameState = GAME_STATE_INIT;
 
     if(AbstractInputs_Clear(&game->inputs)){
         return 1;
@@ -16,5 +16,22 @@ int Game_Loop(Game* game){
     // Process Data
     // Update State
     // Render Output
+    return 0;
+}
+
+int Game_UpdateGameState(Game* game){
+    switch(game->gameState){
+        case GAME_STATE_INIT:
+            if(AbstractInputs_GetInputJ(&game->inputs)){
+                game->gameState = GAME_STATE_PLAYING_CHESS;
+            }
+            break;
+        default:
+            break;
+    }
+    return 0;
+}
+
+int Game_CheckUserInput(Game* game){
     return 0;
 }
