@@ -1,5 +1,7 @@
 
 #include "Game.h"
+#include "AbstractInputs.h"
+#include "ChessConsoleInterface.h"
 
 int Game_Create(Game* game){
     game->gameState = GAME_STATE_INIT;
@@ -16,6 +18,9 @@ int Game_Loop(Game* game){
     // Process Data
     // Update State
     // Render Output
+    if(!Console_Render()){
+        return 1;
+    }
     return 0;
 }
 

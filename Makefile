@@ -9,6 +9,7 @@ CFLAGS := -Isrc
 SRC := \
   app/main.c \
   src/AbstractInputs.c \
+  src/Board.c \
   src/Chess.c \
   src/ChessConsoleInterface.c \
   src/ConsoleBuffer.c \
