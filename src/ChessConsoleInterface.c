@@ -75,7 +75,7 @@ int Console_DrawSquareByAlgNotation(AlgNotation alg){
     if(square == NULL)
         return 1;
 
-    defaultSquare = (square->color == COLOR_WHITE) ? EmptyConsoleSquareWhite : EmptyConsoleSquareBlack;
+    defaultSquare = (square->color == COLOR_WHITE) ? &EmptyConsoleSquareWhite : &EmptyConsoleSquareBlack;
 
     if(ConsoleSquare_Set(consoleSquare, *defaultSquare) == 1)
         return 1;
@@ -115,7 +115,7 @@ int Console_DrawInfoWindow(void){
     // It would be better to reimplement InfoWindow as a 1D array
     const char* infoLinePointer;
     for(int row = 0; row < INFO_WINDOW_NUM_ROWS; row++){
-        infoLinePointer = &infoWindow.info[row];
+        infoLinePointer = (const char*) &infoWindow.info[row];
         if(ConsoleBuffer_DrawRectangle(consoleBuffer,     \
                     (CONSOLE_INFO_WINDOW_ORIGIN_Y + row), \
                     (CONSOLE_INFO_WINDOW_ORIGIN_X),       \
@@ -152,7 +152,8 @@ int ConsoleSquare_WritePiece(ConsoleSquare consoleSquare, Piece* piece){
 
     switch(piece->type){
         case PIECE_NONE:
-            return;
+            c_type = ' ';
+            break;
         case PIECE_ROOK:
             c_type = 'R';
             break;

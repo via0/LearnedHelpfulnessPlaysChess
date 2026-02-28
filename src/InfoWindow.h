@@ -5,7 +5,7 @@
 #define INFO_WINDOW_NUM_ROWS 20
 #define INFO_WINDOW_NUM_COLS 80
 
-typedef struct s_InfoWindow {
+struct s_InfoWindow {
     char info[INFO_WINDOW_NUM_ROWS][INFO_WINDOW_NUM_COLS];
 };
 

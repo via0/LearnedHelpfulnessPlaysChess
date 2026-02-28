@@ -8,8 +8,12 @@ CFLAGS := -Isrc
 # ---- Source files ----
 SRC := \
   app/main.c \
+  src/AbstractInputs.c \
+  src/Chess.c \
+  src/ChessConsoleInterface.c \
+  src/ConsoleBuffer.c \
   src/Game.c \
-  src/ConsoleBuffer.c
+  src/InfoWindow.c
 
 # ---- Output ----
 TARGET := chess
